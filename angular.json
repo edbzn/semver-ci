@@ -6,10 +6,12 @@
       "root": "apps/tour-of-heroes",
       "sourceRoot": "apps/tour-of-heroes/src",
       "prefix": "semver-ci",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "executor": "@angular-devkit/build-angular:browser",
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/tour-of-heroes",
             "index": "apps/tour-of-heroes/src/index.html",
@@ -20,7 +22,9 @@
               "apps/tour-of-heroes/src/favicon.ico",
               "apps/tour-of-heroes/src/assets"
             ],
-            "styles": ["apps/tour-of-heroes/src/styles.css"],
+            "styles": [
+              "apps/tour-of-heroes/src/styles.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -57,7 +61,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "executor": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
               "browserTarget": "tour-of-heroes:build:production"
@@ -69,13 +73,13 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "executor": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "tour-of-heroes:build"
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "apps/tour-of-heroes/src/**/*.ts",
@@ -84,11 +88,20 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/tour-of-heroes"],
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/tour-of-heroes"
+          ],
           "options": {
             "jestConfig": "apps/tour-of-heroes/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "version": {
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "syncVersions": false,
+            "push": true
           }
         }
       }
@@ -113,9 +126,13 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["apps/tour-of-heroes-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/tour-of-heroes-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
